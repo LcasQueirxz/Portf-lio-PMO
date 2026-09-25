@@ -162,6 +162,75 @@ function workload(el, legendEl) {
   if (legendEl) legendEl.innerHTML = STATES.map((st) => `<span><i class="sq wl-${st.id}"></i>${st.name}</span>`).join("");
 }
 
+// ---------------------------------------------------------------- jira workflow (swimlanes by role)
+const LANES = ["Developer", "Tech lead", "Designer", "QA"];
+const WF_NODES = [
+  // id, label, lane, column, kind (wait | work | done | "")
+  { id: "backlog", label: "Backlog", lane: 1, col: 0, kind: "wait" },
+  { id: "todo", label: "To do", lane: 0, col: 1, kind: "" },
+  { id: "prog", label: "In progress", lane: 0, col: 2, kind: "work" },
+  { id: "wcr", label: "Waiting\ncode review", lane: 0, col: 3, kind: "wait" },
+  { id: "cr", label: "Code review", lane: 1, col: 4, kind: "work" },
+  { id: "wdr", label: "Waiting\ndesign review", lane: 2, col: 5, kind: "wait" },
+  { id: "dr", label: "Design review", lane: 2, col: 6, kind: "work" },
+  { id: "rqa", label: "Ready for QA", lane: 3, col: 7, kind: "wait" },
+  { id: "qat", label: "QA testing", lane: 3, col: 8, kind: "work" },
+  { id: "done", label: "Done", lane: 3, col: 9, kind: "done" },
+];
+const WF_EDGES = [
+  ["backlog", "todo"], ["todo", "prog"], ["prog", "wcr"], ["wcr", "cr"], ["cr", "wdr"],
+  ["cr", "rqa", "no UI change"], ["wdr", "dr"], ["dr", "rqa"], ["rqa", "qat"], ["qat", "done"],
+];
+const WF_REWORK = ["cr", "dr", "qat"]; // each can send the ticket back to In progress
+
+function workflow(el) {
+  if (!el) return;
+  const L = 96, CW = 92, NW = 82, NH = 36, TOP = 34, LH = 74;
+  const W = L + CW * 10, H = TOP + LH * LANES.length + 4;
+  const nodes = Object.fromEntries(WF_NODES.map((n) => [n.id, { ...n, cx: L + CW * n.col + CW / 2, cy: TOP + LH * n.lane + LH / 2 }]));
+  const arrow = 'marker-end="url(#wf-arrow)"';
+
+  const lanes = LANES.map((name, i) => `
+    <rect class="wf-lane${i % 2 ? " alt" : ""}" x="0" y="${TOP + LH * i}" width="${W}" height="${LH}" rx="8" />
+    <text class="wf-lane-name" x="12" y="${TOP + LH * i + LH / 2 + 4}">${name}</text>`).join("");
+
+  // forward edges: straight when on the same lane, otherwise right-then-vertical elbow
+  const edges = WF_EDGES.map(([a, b, note]) => {
+    const s = nodes[a], t = nodes[b];
+    if (s.lane === t.lane) return `<path class="wf-edge" d="M${s.cx + NW / 2} ${s.cy} H${t.cx - NW / 2 - 3}" ${arrow} />`;
+    const down = t.lane > s.lane;
+    const ty = down ? t.cy - NH / 2 - 3 : t.cy + NH / 2 + 3;
+    const label = note ? `<text class="wf-note" x="${(s.cx + t.cx) / 2 + 20}" y="${s.cy - 6}" text-anchor="middle">${note}</text>` : "";
+    return `<path class="wf-edge" d="M${s.cx + NW / 2} ${s.cy} H${t.cx} V${ty}" ${arrow} />${label}`;
+  }).join("");
+
+  // rework: up to a shared rail above the lanes, then back into In progress
+  const back = nodes.prog, railY = 16;
+  const rework = WF_REWORK.map((id) => {
+    const n = nodes[id], x = n.cx + 24;
+    return `<path class="wf-back" d="M${x} ${n.cy - NH / 2} V${railY} H${back.cx + 18} V${back.cy - NH / 2 - 3}" ${arrow.replace("wf-arrow", "wf-arrow-back")} />`;
+  }).join("");
+
+  const boxes = WF_NODES.map((n) => {
+    const { cx, cy } = nodes[n.id];
+    const lines = n.label.split("\n");
+    const text = lines.map((ln, i) => `<tspan x="${cx}" dy="${i ? 12 : lines.length > 1 ? -2 : 4}">${ln}</tspan>`).join("");
+    return `<g class="wf-node ${n.kind}"><rect x="${cx - NW / 2}" y="${cy - NH / 2}" width="${NW}" height="${NH}" rx="7" /><text x="${cx}" y="${cy}" text-anchor="middle">${text}</text></g>`;
+  }).join("");
+
+  const n0 = nodes.backlog;
+  el.innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Development workflow in four role lanes. Developer: To do, In progress, Waiting code review. Tech lead: Backlog and Code review. Designer: Waiting design review, Design review. QA: Ready for QA, QA testing, Done. Code review goes to design review, or straight to QA when there is no UI change. Code review, design review and QA testing can each send the ticket back to In progress.">
+    <defs>
+      <marker id="wf-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" /></marker>
+      <marker id="wf-arrow-back" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" /></marker>
+    </defs>
+    ${lanes}
+    <text class="wf-note back" x="${nodes.cr.cx + 30}" y="${railY - 6}">rework</text>
+    ${rework}${edges}${boxes}
+    <text class="wf-note" x="${n0.cx}" y="${n0.cy + NH / 2 + 13}" text-anchor="middle">↺ from any status</text>
+  </svg>`;
+}
+
 // ---------------------------------------------------------------- projects timeline (drag, swipe, arrows, rail)
 // Each <article class="slide"> becomes one stop; its data-date / data-label feed the rail.
 function timeline() {
@@ -177,14 +246,38 @@ function timeline() {
 
   slides.forEach((s, i) => { s.setAttribute("role", "group"); s.setAttribute("aria-roledescription", "slide"); s.setAttribute("aria-label", `${i + 1} of ${n}`); });
   rail.style.setProperty("--n", n);
-  rail.innerHTML = slides.map((s) => `<li><button type="button"><i></i><span class="tl-date">${s.dataset.date}</span><span class="tl-label">${s.dataset.label}</span></button></li>`).join("");
+  rail.innerHTML = slides.map((s) => `<li><button type="button" title="${s.dataset.label}"><i></i><span class="tl-date">${s.dataset.date}</span><span class="tl-label">${s.dataset.label}</span></button></li>`).join("");
   const stops = [...rail.querySelectorAll("button")];
+  const bar = track.parentElement.querySelector(".tl-bar");
+
+  // prev / next at the end of every slide, so nobody has to scroll back up to move on
+  slides.forEach((s, i) => {
+    const p = slides[i - 1], x = slides[i + 1];
+    const nav = document.createElement("nav");
+    nav.className = "slide-nav";
+    nav.setAttribute("aria-label", "Project navigation");
+    nav.innerHTML =
+      (p ? `<button type="button" class="sn-prev" data-go="${i - 1}"><small>← Previous</small>${p.dataset.label}</button>` : "<span></span>") +
+      (x ? `<button type="button" class="sn-next" data-go="${i + 1}"><small>Next →</small>${x.dataset.label}</button>` : "");
+    s.appendChild(nav);
+  });
 
   let active = 0;
+  // when the reader is deep inside a long slide, bring the top of the next one into view
+  const toTop = (animate) => {
+    const navH = document.getElementById("nav")?.offsetHeight || 0;
+    const y = track.getBoundingClientRect().top + window.scrollY - navH - (bar?.offsetHeight || 0) - 8;
+    if (window.scrollY > y + 4) window.scrollTo({ top: y, behavior: animate ? "smooth" : "auto" });
+  };
   const go = (i, animate = smooth) => {
     i = Math.max(0, Math.min(n - 1, i));
     track.scrollTo({ left: slides[i].offsetLeft, behavior: animate ? "smooth" : "auto" });
+    toTop(animate);
   };
+  track.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-go]");
+    if (b) go(+b.dataset.go);
+  });
   const nearest = () => {
     if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) return n - 1;
     let best = 0;
@@ -250,6 +343,7 @@ contracts(document.getElementById("contracts"));
 gantt(document.getElementById("gantt"), document.getElementById("phase-legend"));
 throughput(document.getElementById("throughput"));
 workload(document.getElementById("workload"), document.getElementById("workload-legend"));
+workflow(document.getElementById("workflow"));
 timeline();
 
 // nav: solid background once the dark hero scrolls away

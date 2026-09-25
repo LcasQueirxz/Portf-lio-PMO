@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -58,15 +58,17 @@
             <h2>One project at a time, in order</h2>
             <p class="sub">Drag, swipe or use the arrows. Company and client details are anonymized, and every chart uses illustrative data that follows the logic of the real indicators.</p>
           </div>
-          <div class="tl-controls">
-            <span class="tl-count" id="tl-count" aria-live="polite">1 / 11</span>
-            <button class="tl-btn" type="button" id="tl-prev" aria-label="Previous project">←</button>
-            <button class="tl-btn" type="button" id="tl-next" aria-label="Next project">→</button>
-          </div>
         </header>
 
         <div class="tl" id="timeline">
-          <ol class="tl-rail" id="tl-rail" aria-label="Timeline"></ol>
+          <div class="tl-bar">
+            <ol class="tl-rail" id="tl-rail" aria-label="Timeline"></ol>
+            <div class="tl-controls">
+              <span class="tl-count" id="tl-count" aria-live="polite">1 / 13</span>
+              <button class="tl-btn" type="button" id="tl-prev" aria-label="Previous project">←</button>
+              <button class="tl-btn" type="button" id="tl-next" aria-label="Next project">→</button>
+            </div>
+          </div>
 
           <div class="tl-track" id="tl-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects">
 
@@ -176,7 +178,7 @@
             </article>
 
             <!-- 3 · Know How (Trello v2) -->
-            <article class="slide" data-date="1st sem. 2026" data-label="Know How · final startup">
+            <article class="slide" data-date="H1 2026" data-label="Know How · final startup">
               <div class="case">
                 <div class="case-text">
                   <p class="case-tag">Academic · FACENS · Final startup</p>
@@ -339,16 +341,7 @@
                 </div>
                 <div class="case-visual">
                   <figure class="panel">
-                    <figcaption><b>Shared workflow</b><span class="muted">simplified</span></figcaption>
-                    <ol class="flow" aria-label="Workflow: To do, In progress, Waiting for review, Review, Test, Done.">
-                      <li>To do</li>
-                      <li class="work">In progress</li>
-                      <li class="wait">Waiting for review</li>
-                      <li class="work">Review</li>
-                      <li class="work">Test</li>
-                      <li class="done">Done</li>
-                    </ol>
-                    <div class="legend"><span><i class="fl fl-work"></i>Someone is working</span><span><i class="fl fl-wait"></i>Waiting in a queue</span></div>
+                    <figcaption><b>Two boards side by side</b><span class="muted">same project</span></figcaption>
                     <table class="evo two-boards">
                       <thead><tr><th></th><th>Development</th><th>Support</th></tr></thead>
                       <tbody>
@@ -358,7 +351,6 @@
                         <tr><th>Types</th><td data-h="Development">Story, task, bug</td><td data-h="Support">Correction, support, internal</td></tr>
                       </tbody>
                     </table>
-                    <p class="reading">Queues have their own columns, so time stuck waiting shows up in Cycle Time instead of hiding inside "in progress".</p>
                   </figure>
                   <figure class="panel">
                     <figcaption><b>Anatomy of a ticket</b><span class="muted">redrawn · no real data</span></figcaption>
@@ -380,6 +372,63 @@
                         <li><b>Development link</b> shows the branch and code behind the change.</li>
                       </ol>
                     </div>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- Jira: workflows -->
+            <article class="slide" data-date="Jun 2026" data-label="Jira · workflows">
+              <div class="case case-wide">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Jira administration</p>
+                  <h3>The workflow is the operation: every status and every transition is a rule I designed</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>With open workflows, anyone could drag any ticket anywhere. Code went to the client without review, design approvals happened in chat, and a "done" ticket did not mean the same thing on two projects.</dd>
+                    <dt>Approach</dt>
+                    <dd>I mapped how work really moves between roles and turned it into the workflow. Each transition has a condition on who can run it, validators on the fields it needs, and a post-function that records who moved it.</dd>
+                    <dd>Rework is an explicit path back, not a silent drag, so it can be counted.</dd>
+                    <dt>Outcome</dt>
+                    <dd>The board tells whose turn it is. Review and QA can't be skipped, and waiting time, rework and hand-offs come straight from the ticket history.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Map reality, then configure</li><li>Every hand-off is a status</li><li>Rules in the tool, not in people's heads</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="panel">
+                    <figcaption><b>Development workflow</b><span class="muted">redrawn · names generalized</span></figcaption>
+                    <div class="wf-scroll"><div id="workflow" class="wf"></div></div>
+                    <p class="wf-hint">Swipe the diagram sideways to see the whole flow →</p>
+                    <div class="legend">
+                      <span><i class="fl fl-work"></i>Someone is working</span>
+                      <span><i class="fl fl-wait"></i>Waiting in a queue</span>
+                      <span><i class="ln ln-back"></i>Rework: back to In progress</span>
+                    </div>
+                    <ul class="wf-stats">
+                      <li><b>10</b>statuses</li>
+                      <li><b>14</b>transitions</li>
+                      <li><b>4</b>roles with their own permissions</li>
+                      <li><b>3</b>rework loops, all counted</li>
+                    </ul>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Support workflow</b><span class="muted">Kanban · SLA-driven</span></figcaption>
+                    <ol class="flow" aria-label="Support workflow: Open, Triage, In progress, Waiting for client, Resolved, Closed. Triage can also send a ticket to Out of scope.">
+                      <li>Open</li>
+                      <li class="gate">Triage</li>
+                      <li class="work">In progress</li>
+                      <li class="wait">Waiting for client</li>
+                      <li class="work">Resolved</li>
+                      <li class="done">Closed</li>
+                    </ol>
+                    <ul class="wf-notes">
+                      <li><b>Triage</b> decides in or out of contract scope. Out of scope leaves the flow and becomes a quote.</li>
+                      <li><b>Waiting for client</b> pauses the SLA clock, so the team is not measured on time it doesn't control.</li>
+                      <li><b>Resolved</b> closes by itself if the client doesn't reopen it within a set number of days.</li>
+                    </ul>
                   </figure>
                 </div>
               </div>
@@ -435,6 +484,58 @@
                     <li><span>Runway</span><code>remaining hours ÷ avg. burn of last 3 months</code><em>forecast date the cap is reached</em></li>
                     <li><span>SLA</span><code>business hours, Mon–Fri 8–17</code><em>8 / 24 / 48 / 72 h by priority</em></li>
                   </ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- Jira: automation & agents -->
+            <article class="slide" data-date="Jul–Sep" data-label="Jira · automation &amp; agents">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Jira automation</p>
+                  <h3>Automation does the chasing, agents do the reading, people make the calls</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>A strict workflow creates clicks: assigning reviewers, moving tickets after a merge, chasing due dates, writing delivery notes. Done by hand, it gets skipped.</dd>
+                    <dt>Approach</dt>
+                    <dd>Every repetitive step of the workflow became a Jira Automation rule. Where the step needs reading text, not just fields, an AI agent suggests and a person confirms.</dd>
+                    <dd>Everything outside Jira runs in Google Apps Script on the Jira API.</dd>
+                    <dt>Outcome</dt>
+                    <dd>The workflow stays strict without slowing the team down, and the data behind the indicators is filled in by default, not by discipline.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Automate the rule, not the exception</li><li>AI suggests, people decide</li><li>Every rule has an owner</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="panel">
+                    <figcaption><b>Automation rules</b><span class="muted">examples · When → If → Then</span></figcaption>
+                    <ol class="rules-auto">
+                      <li><span class="ra-when">Moved to Waiting code review</span><span class="ra-then">Assign the tech lead, start the review timer</span></li>
+                      <li><span class="ra-when">Pull request merged</span><span class="ra-if">no UI change</span><span class="ra-then">Skip design, move to Ready for QA</span></li>
+                      <li><span class="ra-when">Rejected in review or QA</span><span class="ra-then">Back to In progress, add a rework mark</span></li>
+                      <li><span class="ra-when">Due date in 2 days</span><span class="ra-if">not in QA yet</span><span class="ra-then">Flag the ticket, notify the owner</span></li>
+                      <li><span class="ra-when">Support ticket created</span><span class="ra-if">no contract label</span><span class="ra-then">Send to triage, ask the requester</span></li>
+                      <li><span class="ra-when">Sprint closed</span><span class="ra-then">Release the version, label the carry-over</span></li>
+                    </ol>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>AI agents</b><span class="muted">Rovo · human in the loop</span></figcaption>
+                    <div class="agents">
+                      <div><b>Triage</b><p>Reads a new support ticket and suggests type, priority and whether it is in contract scope.</p></div>
+                      <div><b>Ticket quality</b><p>Checks that a story has acceptance criteria, and a bug has steps to reproduce, before it enters the sprint.</p></div>
+                      <div><b>Delivery note</b><p>Drafts the client-facing summary of a closed sprint from its done tickets.</p></div>
+                    </div>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Where the data goes</b></figcaption>
+                    <ol class="pipe">
+                      <li>Workflow + automation<small>clean fields, full history</small></li>
+                      <li>Apps Script on the Jira API<small>scheduled extraction</small></li>
+                      <li>Indicator panel<small>contracts, flow, capacity</small></li>
+                    </ol>
+                  </figure>
                 </div>
               </div>
             </article>
@@ -659,6 +760,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
