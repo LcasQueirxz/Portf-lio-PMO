@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Lucas Campos Queiroz · IT Governance & PMO</title>
-  <meta name="description" content="Lucas Campos Queiroz — IT governance and PMO. Demand flow, contract health and project portfolio management driven by indicators." />
-  <meta property="og:title" content="Lucas Campos Queiroz · IT Governance & PMO" />
-  <meta property="og:description" content="Operations you can read. Decisions you can defend." />
+  <title>Lucas Campos Queiroz · Portfolio</title>
+  <meta name="description" content="Lucas Campos Queiroz — IT governance and PMO. Every project in order, with the indicators behind it and how I like to work." />
+  <meta property="og:title" content="Lucas Campos Queiroz · Portfolio" />
+  <meta property="og:description" content="IT governance and PMO. My projects, in order, with the indicators behind them." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,9 +20,8 @@
     <div class="wrap nav-in">
       <a class="brand" href="#top">Lucas Campos Queiroz</a>
       <nav aria-label="Sections">
-        <a href="#work">Work</a>
-        <a href="#approach">Approach</a>
-        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#approach">How I work</a>
         <a class="nav-cta" href="#contact">Contact</a>
       </nav>
     </div>
@@ -33,250 +32,588 @@
     <section class="hero dark" id="top">
       <div class="wrap hero-grid">
         <div>
-          <p class="kicker">IT Governance · PMO</p>
-          <h1>Operations you can read.<br />Decisions you can defend.</h1>
-          <p class="lead">I build governance for IT operations: one entry point for demand, contracts tracked against their pace, a project portfolio planned against real capacity, and indicators that the team actually uses to decide.</p>
+          <p class="kicker">IT Governance · PMO · São Paulo</p>
+          <h1>Hi, I'm Lucas.</h1>
+          <p class="lead">I organize IT operations so a team can see what is coming in, what has been delivered and what is at risk. Below is every project I've worked on, in order, with the indicators I built and the way I like to work.</p>
           <div class="actions">
-            <a class="btn btn-light" href="#work">View work</a>
+            <a class="btn btn-light" href="#projects">See my projects</a>
             <a class="btn btn-ghost" href="#contact">Get in touch</a>
           </div>
+          <dl class="about">
+            <div><dt>Now</dt><dd>IT Operations &amp; Governance Analyst at mosaicQ</dd></div>
+            <div><dt>Graduated</dt><dd>IT Management at UNIFACENS, 2026</dd></div>
+            <div><dt>Languages</dt><dd>Portuguese (native), English (advanced)</dd></div>
+          </dl>
         </div>
-        <figure class="hero-chart">
-          <figcaption>
-            <span>Governance maturity</span>
-            <span class="muted">0–5 scale · illustrative</span>
-          </figcaption>
-          <div id="radar" class="radar" role="img" aria-label="Radar chart of governance maturity across eight dimensions: low in May, much higher now, close to target in most dimensions."></div>
-          <div class="legend legend-dark">
-            <span><i class="sw sw-before"></i>May 2026</span>
-            <span><i class="sw sw-now"></i>Today</span>
-            <span><i class="sw sw-target"></i>Target</span>
-          </div>
-        </figure>
-      </div>
-      <div class="wrap figures">
-        <div><b>~5 months</b><span>from no process to indicator-driven governance</span></div>
-        <div><b>4 phases</b><span>planned, executed and documented</span></div>
-        <div><b>9 → 4</b><span>ticket types, so priority can be filtered</span></div>
-        <div><b>7 screens</b><span>indicator panel built on the Jira API</span></div>
+        <div class="photo"><span>LQ</span><img src="assets/photo.jpg" alt="Portrait of Lucas Campos Queiroz" onerror="this.remove()" /></div>
       </div>
     </section>
 
-    <!-- ============ WHAT I DO ============ -->
-    <section class="section">
+    <!-- ============ PROJECTS TIMELINE ============ -->
+    <section class="section section-tint" id="projects">
       <div class="wrap">
-        <div class="pillars">
+        <header class="tl-head">
           <div>
-            <h2 class="h-sm">Governance &amp; process</h2>
-            <p>Single demand funnel, ticket standards, sprint cadence with its own version, and management meetings where every decision cites an indicator.</p>
+            <p class="kicker kicker-dark">Projects</p>
+            <h2>One project at a time, in order</h2>
+            <p class="sub">Drag, swipe or use the arrows. Company and client details are anonymized, and every chart uses illustrative data that follows the logic of the real indicators.</p>
           </div>
-          <div>
-            <h2 class="h-sm">Contract health</h2>
-            <p>Hours consumed against time elapsed, runway forecasts, SLA in business hours, and in-scope/out-of-scope triage before work starts.</p>
+          <div class="tl-controls">
+            <span class="tl-count" id="tl-count" aria-live="polite">1 / 11</span>
+            <button class="tl-btn" type="button" id="tl-prev" aria-label="Previous project">←</button>
+            <button class="tl-btn" type="button" id="tl-next" aria-label="Next project">→</button>
           </div>
-          <div>
-            <h2 class="h-sm">Project &amp; portfolio</h2>
-            <p>Portfolio view by methodology phase, capacity against committed hours, risk register with contingency plans, and post-mortems that feed the next kickoff.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ WORK ============ -->
-    <section class="section section-tint" id="work">
-      <div class="wrap">
-        <header class="section-head">
-          <p class="kicker kicker-dark">Selected work</p>
-          <h2>Four problems, and how they were solved</h2>
-          <p class="sub">Company and client details are anonymized. Every chart uses illustrative data that follows the logic of the real indicators.</p>
         </header>
 
-        <!-- Case: governance -->
-        <article class="case">
-          <div class="case-text">
-            <p class="case-tag">Governance</p>
-            <h3>Building IT governance from zero in a remote software consultancy</h3>
-            <dl class="case-facts">
-              <dt>Problem</dt>
-              <dd>Demands arrived by email, chat, meetings and videos. Sprints were created once and never closed, and nobody knew for sure what had been delivered.</dd>
-              <dt>Approach</dt>
-              <dd>Gradual change in live operations: pilot the method on one project, measure, then replicate. Four phases, each with a plan, a journal and a formal close.</dd>
-              <dt>Outcome</dt>
-              <dd>One entry channel triaged in or out of contract scope, weekly sprints with their own version, and every delivery communicated formally.</dd>
-            </dl>
-          </div>
-          <div class="case-visual">
-            <ol class="phases">
-              <li class="done"><span>May</span><b>Operational base</b><p>Demand funnel, ticket standard, sprint cadence.</p></li>
-              <li class="done"><span>Jun</span><b>First indicators</b><p>Contract compliance, Velocity and Cycle Time.</p></li>
-              <li class="done"><span>Jul–Sep</span><b>Indicator panel</b><p>Contracts, SLA, workload, planning.</p></li>
-              <li class="now"><span>Now</span><b>Decisions</b><p>Data-driven meetings, post-mortems, risk.</p></li>
-            </ol>
-            <figure class="panel">
-              <figcaption><b>Maturity by dimension</b><span class="muted">May → today · illustrative</span></figcaption>
-              <div id="dumbbell" class="dumbbell"></div>
-              <div class="legend"><span><i class="dot dot-before"></i>May 2026</span><span><i class="dot dot-now"></i>Today</span></div>
-            </figure>
-          </div>
-        </article>
+        <div class="tl" id="timeline">
+          <ol class="tl-rail" id="tl-rail" aria-label="Timeline"></ol>
 
-        <!-- Case: contracts -->
-        <article class="case">
-          <div class="case-text">
-            <p class="case-tag">Contract health</p>
-            <h3>Seeing a contract overrun before it happens</h3>
-            <dl class="case-facts">
-              <dt>Problem</dt>
-              <dd>Hours, contracts and tickets lived in separate places. Overruns were discovered after the fact, when the only option left was to absorb the cost.</dd>
-              <dt>Approach</dt>
-              <dd>A panel on top of the Jira API that compares hours used with time elapsed, forecasts the date each contract runs out, and documents every threshold.</dd>
-              <dt>Outcome</dt>
-              <dd>Amendment conversations start while there is still room to negotiate, and slow-paced support contracts are flagged as a retention risk.</dd>
-            </dl>
-          </div>
-          <div class="case-visual">
-            <figure class="panel">
-              <figcaption><b>Contract portfolio</b><span class="muted">bar = hours used · line = time elapsed · illustrative</span></figcaption>
-              <div id="contracts" class="contracts"></div>
-            </figure>
-            <figure class="panel">
-              <figcaption><b>Development contract · pace vs. actual</b><span class="muted">% of hour cap by month · illustrative</span></figcaption>
-              <svg class="chart" viewBox="0 0 540 250" role="img" aria-label="Line chart: actual consumption rises faster than the expected pace; the forecast reaches the hour cap in month 7, one month before the contract ends.">
-                <g class="grid">
-                  <line x1="40" y1="200" x2="500" y2="200" /><line x1="40" y1="155" x2="500" y2="155" /><line x1="40" y1="110" x2="500" y2="110" /><line x1="40" y1="65" x2="500" y2="65" /><line x1="40" y1="20" x2="500" y2="20" />
-                </g>
-                <g class="axis">
-                  <text x="32" y="204" text-anchor="end">0%</text><text x="32" y="159" text-anchor="end">25%</text><text x="32" y="114" text-anchor="end">50%</text><text x="32" y="69" text-anchor="end">75%</text><text x="32" y="24" text-anchor="end">100%</text>
-                  <text x="97.5" y="222" text-anchor="middle">M1</text><text x="155" y="222" text-anchor="middle">M2</text><text x="212.5" y="222" text-anchor="middle">M3</text><text x="270" y="222" text-anchor="middle">M4</text><text x="327.5" y="222" text-anchor="middle">M5</text><text x="385" y="222" text-anchor="middle">M6</text><text x="442.5" y="222" text-anchor="middle">M7</text><text x="500" y="222" text-anchor="middle">M8</text>
-                </g>
-                <polyline class="s-pace" points="40,200 97.5,177.5 155,155 212.5,132.5 270,110 327.5,87.5 385,65 442.5,42.5 500,20" />
-                <polygon class="s-area" points="40,200 97.5,180.2 155,156.8 212.5,129.8 270,101 327.5,72.2 327.5,200" />
-                <polyline class="s-actual" points="40,200 97.5,180.2 155,156.8 212.5,129.8 270,101 327.5,72.2" />
-                <line class="s-forecast" x1="327.5" y1="72.2" x2="433.9" y2="20" />
-                <circle class="p-actual" cx="327.5" cy="72.2" r="4.5" />
-                <circle class="p-warn" cx="433.9" cy="20" r="5" />
-                <text class="t-warn" x="424" y="40" text-anchor="end">cap reached ≈ M7</text>
-                <text class="t-today" x="327.5" y="242" text-anchor="middle">today</text>
-              </svg>
-              <div class="legend"><span><i class="ln ln-actual"></i>Actual</span><span><i class="ln ln-pace"></i>Expected pace</span><span><i class="ln ln-forecast"></i>Forecast</span></div>
-            </figure>
-            <ul class="rules">
-              <li><span>Pacing</span><code>% used − % time elapsed</code><em>above +10 pp is accelerated, below −15 pp is slow</em></li>
-              <li><span>Runway</span><code>remaining hours ÷ avg. burn of last 3 months</code><em>forecast date the cap is reached</em></li>
-              <li><span>SLA</span><code>business hours, Mon–Fri 8–17</code><em>8 / 24 / 48 / 72 h by priority</em></li>
-            </ul>
-          </div>
-        </article>
+          <div class="tl-track" id="tl-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects">
 
-        <!-- Case: portfolio -->
-        <article class="case">
-          <div class="case-text">
-            <p class="case-tag">Project &amp; portfolio</p>
-            <h3>A portfolio planned against real capacity</h3>
-            <dl class="case-facts">
-              <dt>Problem</dt>
-              <dd>Every project had its own schedule, and nobody could answer the commercial question "can we take on another contract?" without guessing.</dd>
-              <dt>Approach</dt>
-              <dd>One portfolio view by methodology phase (Immersion to Deploy), with capacity measured from a 12-week delivery average and a 20% buffer kept free.</dd>
-              <dt>Outcome</dt>
-              <dd>Overrun warnings appear before the deadline, and sales can see the month when committed hours hit the team's ceiling.</dd>
-            </dl>
-          </div>
-          <div class="case-visual">
-            <figure class="panel">
-              <figcaption><b>Project portfolio</b><span class="muted">Jul–Dec · phase of the methodology · illustrative</span></figcaption>
-              <div id="gantt" class="gantt"></div>
-              <div class="legend legend-phases" id="phase-legend"></div>
-            </figure>
-            <figure class="panel">
-              <figcaption><b>Committed hours vs. team capacity</b><span class="muted">hours per month · illustrative</span></figcaption>
-              <svg class="chart" viewBox="0 0 540 230" role="img" aria-label="Bar chart: committed hours grow from 620 in July to 980 in December; December exceeds the 900-hour capacity line.">
-                <g class="grid">
-                  <line x1="44" y1="190" x2="520" y2="190" /><line x1="44" y1="145" x2="520" y2="145" /><line x1="44" y1="100" x2="520" y2="100" /><line x1="44" y1="10" x2="520" y2="10" />
-                </g>
-                <g class="axis">
-                  <text x="36" y="194" text-anchor="end">0</text><text x="36" y="149" text-anchor="end">300</text><text x="36" y="104" text-anchor="end">600</text><text x="36" y="14" text-anchor="end">1,200</text>
-                  <text x="85" y="210" text-anchor="middle">Jul</text><text x="165" y="210" text-anchor="middle">Aug</text><text x="245" y="210" text-anchor="middle">Sep</text><text x="325" y="210" text-anchor="middle">Oct</text><text x="405" y="210" text-anchor="middle">Nov</text><text x="485" y="210" text-anchor="middle">Dec</text>
-                </g>
-                <g class="bars">
-                  <rect x="65" y="97" width="40" height="93" rx="4" /><rect x="145" y="85" width="40" height="105" rx="4" /><rect x="225" y="76" width="40" height="114" rx="4" /><rect x="305" y="67" width="40" height="123" rx="4" /><rect x="385" y="55" width="40" height="135" rx="4" /><rect class="over" x="465" y="43" width="40" height="147" rx="4" />
-                </g>
-                <line class="cap" x1="44" y1="55" x2="520" y2="55" />
-                <text class="t-cap" x="50" y="48">capacity 900 h</text>
-                <text class="t-warn" x="485" y="36" text-anchor="middle">980</text>
-              </svg>
-              <p class="reading">December is over capacity: new contracts starting then need hiring or a later start date.</p>
-            </figure>
-          </div>
-        </article>
-
-        <!-- Case: risk -->
-        <article class="case">
-          <div class="case-text">
-            <p class="case-tag">Risk &amp; continuity</p>
-            <h3>Contingency plans decided before they are needed</h3>
-            <dl class="case-facts">
-              <dt>Problem</dt>
-              <dd>The indicators showed danger signs, but nobody had decided in advance what to do when they lit up, including the risk of losing a client.</dd>
-              <dt>Approach</dt>
-              <dd>Each risk gets probability × impact, an early-warning signal tied to a real indicator, prevention actions and a contingency plan with a trigger and an owner.</dd>
-              <dt>Outcome</dt>
-              <dd>A monthly client health score and plans ready for the first 48 hours, instead of improvising under pressure.</dd>
-            </dl>
-          </div>
-          <div class="case-visual two">
-            <figure class="panel">
-              <figcaption><b>Risk heat map</b><span class="muted">probability × impact · illustrative</span></figcaption>
-              <div class="hm-wrap">
-                <span class="hm-y">Impact</span>
-                <div class="hm" role="img" aria-label="Five by five risk matrix; all six example risks sit in the high band.">
-                  <span class="hm-l">5</span><i class="m"></i><i class="h"><b>2</b><b>6</b></i><i class="c"></i><i class="c"></i><i class="c"></i>
-                  <span class="hm-l">4</span><i class="l"></i><i class="m"></i><i class="h"><b>1</b><b>4</b><b>5</b></i><i class="c"></i><i class="c"></i>
-                  <span class="hm-l">3</span><i class="l"></i><i class="m"></i><i class="m"></i><i class="h"><b>3</b></i><i class="c"></i>
-                  <span class="hm-l">2</span><i class="l"></i><i class="l"></i><i class="m"></i><i class="m"></i><i class="h"></i>
-                  <span class="hm-l">1</span><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i class="m"></i>
-                  <span></span><span class="hm-l">1</span><span class="hm-l">2</span><span class="hm-l">3</span><span class="hm-l">4</span><span class="hm-l">5</span>
+            <!-- 1 · Vesuvius -->
+            <article class="slide" data-date="Jun 2025" data-label="MES &amp; automation · Vesuvius">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">Apprenticeship · Operations, BI &amp; IT</p>
+                  <h3>Where it started: a factory, a MES rollout and a lot of spreadsheets</h3>
+                  <p class="where">Vesuvius Sensors &amp; Probes · Sorocaba · Jun 2025 – Apr 2026</p>
+                  <dl class="case-facts">
+                    <dt>Context</dt>
+                    <dd>My first job in IT, as an apprentice in an industrial plant while the MES (Manufacturing Execution System) was being deployed.</dd>
+                    <dt>What I did</dt>
+                    <dd>I was the day-to-day contact with the external vendors of the MES rollout.</dd>
+                    <dd>I used Power BI, SQL and Python to read operational data, and automated repetitive routines with Power Automate, Excel and VBA.</dd>
+                    <dt>What I took from it</dt>
+                    <dd>Seeing a whole operation run on data, and the habit of automating anything I had to do twice.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>One contact for the vendors</li><li>Automate the repetitive first</li><li>Data before opinions</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="panel">
+                    <figcaption><b>Tools I used</b></figcaption>
+                    <ul class="tags"><li>MES</li><li>Power BI</li><li>SQL</li><li>Python</li><li>Power Automate</li><li>Excel &amp; VBA</li></ul>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>How my automation evolved</b><span class="muted">same habit, better tools</span></figcaption>
+                    <ol class="steps">
+                      <li><span>Then · Vesuvius</span><b>Excel + VBA</b><p>Macros that removed manual steps from spreadsheets on one machine.</p></li>
+                      <li><span>Then · Vesuvius</span><b>Power Automate</b><p>Flows between Microsoft apps, with no one pressing a button.</p></li>
+                      <li class="now"><span>Now · mosaicQ</span><b>Google Apps Script + Jira API</b><p>Integrations in the cloud that feed a whole indicator panel.</p></li>
+                    </ol>
+                  </figure>
                 </div>
               </div>
-              <p class="hm-x">Probability</p>
-              <ol class="risk-list">
-                <li>Client churn from low perceived value</li><li>Revenue concentrated in one client</li><li>Key-person dependency</li>
-                <li>Contract overrun without amendment</li><li>Change deployed without notice</li><li>Security incident</li>
-              </ol>
-            </figure>
-            <figure class="panel plan">
-              <figcaption><b>Contingency plan · client churn</b><span class="muted">example</span></figcaption>
-              <dl>
-                <dt>Early warning</dt><dd>Slow pace with hours spent but no visible delivery; contract ends in 90 days or less.</dd>
-                <dt>Trigger</dt><dd>Client signals dissatisfaction, or 60 days to the end without a renewal proposal.</dd>
-                <dt>First 48 h</dt>
-                <dd><ol><li>Align internally with leadership.</li><li>Pull six months of delivered value from the panel.</li><li>Meet the client sponsor to listen first.</li><li>Propose a reshaped package.</li></ol></dd>
-                <dt>Owner</dt><dd>Leadership decides; governance brings the data and the plan.</dd>
-              </dl>
-            </figure>
-          </div>
-        </article>
+            </article>
 
-        <!-- Academic -->
-        <article class="case case-academic">
-          <div class="case-text">
-            <p class="case-tag">Academic · FACENS</p>
-            <h3>Scrum Master in a university software project</h3>
-            <!-- RASCUNHO: completar com os dados reais do projeto -->
-            <p class="draft">Draft: project name, team size, number of sprints, what the product did, what changed under your facilitation and the outcome.</p>
+            <!-- 2 · AcomodaJá (Trello v1) -->
+            <article class="slide" data-date="Oct 2025" data-label="AcomodaJá · first startup">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">Academic · FACENS · Startup project</p>
+                  <h3>AcomodaJá: my first project board</h3>
+                  <p class="where">FACENS · Project One · Oct – Dec 2025 · team of 5</p>
+                  <dl class="case-facts">
+                    <dt>Product</dt>
+                    <dd>A reservation manager for hosts: one calendar for Booking.com, Airbnb and direct bookings, plus payments and property reports. Built with a partner company and taken to an MVP presentation.</dd>
+                    <dt>Board</dt>
+                    <dd>Trello, organized around what we had to hand in: reference links, meeting notes, feedback as a checklist, and 23 delivered tasks, from the database diagram to the final article.</dd>
+                    <dt>Looking back</dt>
+                    <dd>It tracked deliverables, not flow. No labels, no review step and the whole team on every card. That is exactly what I changed in the next project.</dd>
+                  </dl>
+                  <div class="actions actions-sm">
+                    <a class="btn btn-dark" href="https://v0-acomoda-ja-ui-design.vercel.app/" target="_blank" rel="noopener">See the MVP ↗</a>
+                  </div>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Everything in one board</li><li>Meeting notes as cards</li><li>Feedback as a checklist</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="shot">
+                    <img src="assets/acomodaja.jpg" alt="The AcomodaJá team next to the project poster at the Plugin 2025 showcase" loading="lazy" onerror="this.parentElement.remove()" />
+                    <figcaption>Plugin showcase · FACENS 2025</figcaption>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Project board · Trello</b><span class="muted">redrawn and anonymized</span></figcaption>
+                    <div class="board" role="img" aria-label="Trello board with five lists: Essentials, Meetings, Not started, In progress and Delivered. Delivered holds 23 cards, the other status lists are empty.">
+                      <div class="b-col">
+                        <p class="b-title">Essentials <span>6</span></p>
+                        <i class="b-card b-pin b-blue">Partner company</i>
+                        <i class="b-card b-pin b-orange">Questions</i>
+                        <i class="b-card b-pin b-purple">Project links</i>
+                        <i class="b-card b-pin b-olive">Class materials</i>
+                      </div>
+                      <div class="b-col">
+                        <p class="b-title">Meetings <span>3</span></p>
+                        <i class="b-card">MVP presentation · notes</i>
+                        <i class="b-card">Feedback<em class="b-check">22/33</em></i>
+                        <i class="b-card">SDGs</i>
+                      </div>
+                      <div class="b-col">
+                        <p class="b-title">Not started <span>0</span></p>
+                        <i class="b-empty"></i>
+                      </div>
+                      <div class="b-col">
+                        <p class="b-title">In progress <span>0</span></p>
+                        <i class="b-empty"></i>
+                      </div>
+                      <div class="b-col">
+                        <p class="b-title">Delivered <span>23</span></p>
+                        <i class="b-card b-done">Final corrections</i>
+                        <i class="b-card b-done">Report<em class="b-date">Nov 12</em></i>
+                        <i class="b-card b-done">Class presentation<em class="b-date">Nov 27</em></i>
+                        <i class="b-card b-done">Full article<em class="b-date">Oct 23</em></i>
+                        <i class="b-card b-done">DB entity diagram<em class="b-date">Oct 17</em></i>
+                      </div>
+                    </div>
+                    <p class="reading">Lists by type of content, status lists barely used: the board answered "what did we hand in?", not "what is in progress?".</p>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- 3 · Know How (Trello v2) -->
+            <article class="slide" data-date="1st sem. 2026" data-label="Know How · final startup">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">Academic · FACENS · Final startup</p>
+                  <h3>Know How: the same tool, used as a real workflow</h3>
+                  <p class="where">FACENS · Final startup project · 2026 · team of 5 · my role: Scrum Master</p>
+                  <dl class="case-facts">
+                    <dt>Product</dt>
+                    <dd>A gamified online learning platform for university students, with content adapted to their native language and a bridge between classes and the job market.</dd>
+                    <dt>Board</dt>
+                    <dd>Backlog → To do → Doing → Review/Test → Done, with a colour label per area, one owner per card and a due date on every task.</dd>
+                    <dt>Scope</dt>
+                    <dd>Server routes, N8N automations, QA and API cost, validation with the community, pitch, banner and technical article: 47 cards delivered.</dd>
+                    <dt>My role</dt>
+                    <dd>As Scrum Master I set up the board and the flow, kept every card with an owner and a date, and made sure work passed through review before it counted as done.</dd>
+                    <dt>Looking back</dt>
+                    <dd>This is where I started thinking in flow instead of lists. It is the base I took to Jira at work.</dd>
+                  </dl>
+                  <div class="actions actions-sm">
+                    <a class="btn btn-dark" href="https://taynarossauro.github.io/LP-Know-How/" target="_blank" rel="noopener">Landing page ↗</a>
+                    <a class="btn btn-outline" href="https://www.youtube.com/watch?v=fK4etY2r7q8" target="_blank" rel="noopener">Demo video ↗</a>
+                    <a class="btn btn-outline" href="https://github.com/taynarossauro/Know-How-System" target="_blank" rel="noopener">GitHub ↗</a>
+                  </div>
+                  <div class="ways">
+                    <p>How I worked · Scrum Master</p>
+                    <ul><li>A review step before done</li><li>One owner per card</li><li>Labels by area</li><li>Dates the team agreed on</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="shot">
+                    <img src="assets/knowhow.jpg" alt="The Know How team next to the project poster at the FACENS project showcase" loading="lazy" onerror="this.parentElement.remove()" />
+                    <figcaption>Project showcase · FACENS 2026</figcaption>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Project board · Trello</b><span class="muted">redrawn and anonymized</span></figcaption>
+                    <div class="board" role="img" aria-label="Trello board with a Kanban flow: Backlog, To do, Doing, Review/Test and Done. Done holds 47 cards, each with a label, an owner and a due date.">
+                      <div class="b-col">
+                        <p class="b-title">Backlog <span>0</span></p>
+                        <i class="b-empty"></i>
+                      </div>
+                      <div class="b-col">
+                        <p class="b-title">To do <span>0</span></p>
+                        <i class="b-empty"></i>
+                      </div>
+                      <div class="b-col">
+                        <p class="b-title">Doing <span>0</span></p>
+                        <i class="b-empty"></i>
+                      </div>
+                      <div class="b-col">
+                        <p class="b-title">Review / Test <span>0</span></p>
+                        <i class="b-empty"></i>
+                      </div>
+                      <div class="b-col b-col-wide">
+                        <p class="b-title">Done <span>47</span></p>
+                        <i class="b-card b-done"><s class="lb lb-orange"></s>Server routes<em class="b-date">May 25</em><u>A</u></i>
+                        <i class="b-card b-done"><s class="lb lb-orange"></s>N8N bottlenecks<em class="b-date">May 26</em><u>B</u></i>
+                        <i class="b-card b-done"><s class="lb lb-green"></s><s class="lb lb-yellow"></s>Community validation<em class="b-date">May 25</em><u>C</u></i>
+                        <i class="b-card b-done"><s class="lb lb-green"></s>QA &amp; API cost<em class="b-date">May 27</em><u>D</u></i>
+                        <i class="b-card b-done"><s class="lb lb-green"></s><s class="lb lb-yellow"></s>Pitch &amp; final docs<em class="b-date">May 29</em><u>E</u></i>
+                        <i class="b-card b-done"><s class="lb lb-red"></s>Final banner<em class="b-date">May 22</em><u>A</u></i>
+                      </div>
+                    </div>
+                    <p class="reading">Status lists follow the work, and every card carries a label, an owner and a date.</p>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>How my boards evolved</b><span class="muted">Trello → Trello → Jira</span></figcaption>
+                    <table class="evo">
+                      <thead><tr><th></th><th>AcomodaJá</th><th>Know How</th><th>Today · Jira</th></tr></thead>
+                      <tbody>
+                        <tr><th>Workflow</th><td data-h="AcomodaJá">Lists of deliverables</td><td data-h="Know How">Backlog → Review/Test → Done</td><td data-h="Today · Jira">Sprint board for development, Kanban for support, review as its own step</td></tr>
+                        <tr><th>Ownership</th><td data-h="AcomodaJá">Whole team on a card</td><td data-h="Know How">One owner per card</td><td data-h="Today · Jira">Assignee, reporter and SLA</td></tr>
+                        <tr><th>Categories</th><td data-h="AcomodaJá">None</td><td data-h="Know How">Colour labels by area</td><td data-h="Today · Jira">4 issue types, filterable by priority</td></tr>
+                        <tr><th>Intake</th><td data-h="AcomodaJá">Meeting notes</td><td data-h="Know How">Backlog list</td><td data-h="Today · Jira">One door through Jira Service Management</td></tr>
+                        <tr><th>Visibility</th><td data-h="AcomodaJá">Card count</td><td data-h="Know How">Done column</td><td data-h="Today · Jira">Indicator panel on the Jira API</td></tr>
+                      </tbody>
+                    </table>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- Graduation -->
+            <article class="slide" data-date="2026" data-label="Graduation · UNIFACENS">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">Milestone</p>
+                  <h3>Graduated in IT Management</h3>
+                  <p class="where">UNIFACENS · Technologist degree · 2024 – 2026</p>
+                  <dl class="case-facts">
+                    <dt>What I took from it</dt>
+                    <dd>Two startup projects taken from idea to a presented MVP, one of them with a partner company, and a clear view of how I like to organize work.</dd>
+                    <dd>The same years I was already working in operations, so what I learned in class went straight into practice, and the other way around.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Study and work side by side</li><li>Learn by delivering</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="shot">
+                    <img src="assets/graduation.jpg" alt="Graduation ceremony at UNIFACENS, graduates throwing their caps in the air" loading="lazy" onerror="this.parentElement.remove()" />
+                    <figcaption>Graduation ceremony · UNIFACENS</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- 4 · Governance -->
+            <article class="slide" data-date="May 2026" data-label="Governance from zero">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Governance</p>
+                  <h3>Building IT governance from zero in a remote software consultancy</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>Demands arrived by email, chat, meetings and videos. Sprints were created once and never closed, and nobody knew for sure what had been delivered.</dd>
+                    <dt>Approach</dt>
+                    <dd>Gradual change in live operations: pilot the method on one project, measure, then replicate. Four phases, each with a plan, a journal and a formal close.</dd>
+                    <dt>Outcome</dt>
+                    <dd>One entry channel triaged in or out of contract scope, weekly sprints with their own version, and every delivery communicated formally.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Pilot, then replicate</li><li>One door for demand</li><li>Measure before changing</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <ol class="phases">
+                    <li class="done"><span>May</span><b>Operational base</b><p>Demand funnel, ticket standard, sprint cadence.</p></li>
+                    <li class="done"><span>Jun</span><b>First indicators</b><p>Contract compliance, Velocity and Cycle Time.</p></li>
+                    <li class="done"><span>Jul–Sep</span><b>Indicator panel</b><p>Contracts, SLA, workload, planning.</p></li>
+                    <li class="now"><span>Now</span><b>Decisions</b><p>Data-driven meetings, post-mortems, risk.</p></li>
+                  </ol>
+                  <figure class="panel">
+                    <figcaption><b>Maturity by dimension</b><span class="muted">May → today · illustrative</span></figcaption>
+                    <div id="dumbbell" class="dumbbell"></div>
+                    <div class="legend"><span><i class="dot dot-before"></i>May 2026</span><span><i class="dot dot-now"></i>Today</span></div>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- Jira: sprint + kanban -->
+            <article class="slide" data-date="May–Jun" data-label="Jira · two boards">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Jira</p>
+                  <h3>Two boards, one project: sprints for development, Kanban for support</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>Planned development and incoming support compete for the same people. Mixed on one board, neither the sprint nor the support queue can be read.</dd>
+                    <dt>Approach</dt>
+                    <dd>Development runs in sprints with story points and due dates; support runs as a continuous Kanban flow. Both share the same stages, review waits in its own column, and every ticket carries a contract label and a type label.</dd>
+                    <dt>Outcome</dt>
+                    <dd>The sprint shows what was committed, support shows what is waiting, and hours from both are counted against the right contract.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Sprint for planned, Kanban for incoming</li><li>Waiting is a status too</li><li>Traceable by default</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="panel">
+                    <figcaption><b>Shared workflow</b><span class="muted">simplified</span></figcaption>
+                    <ol class="flow" aria-label="Workflow: To do, In progress, Waiting for review, Review, Test, Done.">
+                      <li>To do</li>
+                      <li class="work">In progress</li>
+                      <li class="wait">Waiting for review</li>
+                      <li class="work">Review</li>
+                      <li class="work">Test</li>
+                      <li class="done">Done</li>
+                    </ol>
+                    <div class="legend"><span><i class="fl fl-work"></i>Someone is working</span><span><i class="fl fl-wait"></i>Waiting in a queue</span></div>
+                    <table class="evo two-boards">
+                      <thead><tr><th></th><th>Development</th><th>Support</th></tr></thead>
+                      <tbody>
+                        <tr><th>Board</th><td data-h="Development">Sprint, closed with its own version</td><td data-h="Support">Continuous Kanban</td></tr>
+                        <tr><th>Sizing</th><td data-h="Development">Story points and due date</td><td data-h="Support">SLA by priority</td></tr>
+                        <tr><th>Entry</th><td data-h="Development">Refined backlog</td><td data-h="Support">One triaged support channel</td></tr>
+                        <tr><th>Types</th><td data-h="Development">Story, task, bug</td><td data-h="Support">Correction, support, internal</td></tr>
+                      </tbody>
+                    </table>
+                    <p class="reading">Queues have their own columns, so time stuck waiting shows up in Cycle Time instead of hiding inside "in progress".</p>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Anatomy of a ticket</b><span class="muted">redrawn · no real data</span></figcaption>
+                    <div class="anatomy">
+                      <div class="j-card" aria-hidden="true">
+                        <p class="j-title">Fix report export timeout</p>
+                        <p class="j-date">Oct 1 <sup>1</sup></p>
+                        <span class="j-lbl">CONTRACT-A <sup>2</sup></span>
+                        <div><span class="j-lbl">Correction</span> <sup>3</sup></div>
+                        <div class="j-icons"><span class="j-pts">3</span><sup>4</sup> <i class="j-flag"></i><sup>5</sup> <i class="j-branch">⑂</i><sup>6</sup></div>
+                        <div class="j-foot"><span class="j-bug"></span>DEV-128<u>LQ</u></div>
+                      </div>
+                      <ol class="callouts">
+                        <li><b>Due date</b> agreed with the client, flagged when at risk.</li>
+                        <li><b>Contract label</b> counts the hours against the right contract.</li>
+                        <li><b>Type label</b> says if it is new work, a correction or internal, in or out of scope.</li>
+                        <li><b>Story points</b> feed Velocity and sprint planning.</li>
+                        <li><b>Flag</b> marks what is blocked or urgent.</li>
+                        <li><b>Development link</b> shows the branch and code behind the change.</li>
+                      </ol>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- 4 · Contracts -->
+            <article class="slide" data-date="Jun 2026" data-label="Contract health">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Contract health</p>
+                  <h3>Seeing a contract overrun before it happens</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>Hours, contracts and tickets lived in separate places. Overruns were discovered after the fact, when the only option left was to absorb the cost.</dd>
+                    <dt>Approach</dt>
+                    <dd>A panel on top of the Jira API that compares hours used with time elapsed, forecasts the date each contract runs out, and documents every threshold.</dd>
+                    <dt>Outcome</dt>
+                    <dd>Amendment conversations start while there is still room to negotiate, and slow-paced support contracts are flagged as a retention risk.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Every threshold written down</li><li>Warn early, not after</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="panel">
+                    <figcaption><b>Contract portfolio</b><span class="muted">bar = hours used · line = time elapsed · illustrative</span></figcaption>
+                    <div id="contracts" class="contracts"></div>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Development contract · pace vs. actual</b><span class="muted">% of hour cap by month · illustrative</span></figcaption>
+                    <svg class="chart" viewBox="0 0 540 250" role="img" aria-label="Line chart: actual consumption rises faster than the expected pace; the forecast reaches the hour cap in month 7, one month before the contract ends.">
+                      <g class="grid">
+                        <line x1="40" y1="200" x2="500" y2="200" /><line x1="40" y1="155" x2="500" y2="155" /><line x1="40" y1="110" x2="500" y2="110" /><line x1="40" y1="65" x2="500" y2="65" /><line x1="40" y1="20" x2="500" y2="20" />
+                      </g>
+                      <g class="axis">
+                        <text x="32" y="204" text-anchor="end">0%</text><text x="32" y="159" text-anchor="end">25%</text><text x="32" y="114" text-anchor="end">50%</text><text x="32" y="69" text-anchor="end">75%</text><text x="32" y="24" text-anchor="end">100%</text>
+                        <text x="97.5" y="222" text-anchor="middle">M1</text><text x="155" y="222" text-anchor="middle">M2</text><text x="212.5" y="222" text-anchor="middle">M3</text><text x="270" y="222" text-anchor="middle">M4</text><text x="327.5" y="222" text-anchor="middle">M5</text><text x="385" y="222" text-anchor="middle">M6</text><text x="442.5" y="222" text-anchor="middle">M7</text><text x="500" y="222" text-anchor="middle">M8</text>
+                      </g>
+                      <polyline class="s-pace" points="40,200 97.5,177.5 155,155 212.5,132.5 270,110 327.5,87.5 385,65 442.5,42.5 500,20" />
+                      <polygon class="s-area" points="40,200 97.5,180.2 155,156.8 212.5,129.8 270,101 327.5,72.2 327.5,200" />
+                      <polyline class="s-actual" points="40,200 97.5,180.2 155,156.8 212.5,129.8 270,101 327.5,72.2" />
+                      <line class="s-forecast" x1="327.5" y1="72.2" x2="433.9" y2="20" />
+                      <circle class="p-actual" cx="327.5" cy="72.2" r="4.5" />
+                      <circle class="p-warn" cx="433.9" cy="20" r="5" />
+                      <text class="t-warn" x="424" y="40" text-anchor="end">cap reached ≈ M7</text>
+                      <text class="t-today" x="327.5" y="242" text-anchor="middle">today</text>
+                    </svg>
+                    <div class="legend"><span><i class="ln ln-actual"></i>Actual</span><span><i class="ln ln-pace"></i>Expected pace</span><span><i class="ln ln-forecast"></i>Forecast</span></div>
+                  </figure>
+                  <ul class="rules">
+                    <li><span>Pacing</span><code>% used − % time elapsed</code><em>above +10 pp is accelerated, below −15 pp is slow</em></li>
+                    <li><span>Runway</span><code>remaining hours ÷ avg. burn of last 3 months</code><em>forecast date the cap is reached</em></li>
+                    <li><span>SLA</span><code>business hours, Mon–Fri 8–17</code><em>8 / 24 / 48 / 72 h by priority</em></li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- 5 · Portfolio -->
+            <article class="slide" data-date="Jul–Sep" data-label="Portfolio vs. capacity">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Project &amp; portfolio</p>
+                  <h3>A portfolio planned against real capacity</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>Every project had its own schedule, and nobody could answer the commercial question "can we take on another contract?" without guessing.</dd>
+                    <dt>Approach</dt>
+                    <dd>One portfolio view by methodology phase (Immersion to Deploy), with capacity measured from a 12-week delivery average and a 20% buffer kept free.</dd>
+                    <dt>Outcome</dt>
+                    <dd>Overrun warnings appear before the deadline, and sales can see the month when committed hours hit the team's ceiling.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Plan against real capacity</li><li>Keep a 20% buffer</li><li>Decisions cite indicators</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="panel">
+                    <figcaption><b>Project portfolio</b><span class="muted">Jul–Dec · phase of the methodology · illustrative</span></figcaption>
+                    <div id="gantt" class="gantt"></div>
+                    <div class="legend legend-phases" id="phase-legend"></div>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Committed hours vs. team capacity</b><span class="muted">hours per month · illustrative</span></figcaption>
+                    <svg class="chart" viewBox="0 0 540 230" role="img" aria-label="Bar chart: committed hours grow from 620 in July to 980 in December; December exceeds the 900-hour capacity line.">
+                      <g class="grid">
+                        <line x1="44" y1="190" x2="520" y2="190" /><line x1="44" y1="145" x2="520" y2="145" /><line x1="44" y1="100" x2="520" y2="100" /><line x1="44" y1="10" x2="520" y2="10" />
+                      </g>
+                      <g class="axis">
+                        <text x="36" y="194" text-anchor="end">0</text><text x="36" y="149" text-anchor="end">300</text><text x="36" y="104" text-anchor="end">600</text><text x="36" y="14" text-anchor="end">1,200</text>
+                        <text x="85" y="210" text-anchor="middle">Jul</text><text x="165" y="210" text-anchor="middle">Aug</text><text x="245" y="210" text-anchor="middle">Sep</text><text x="325" y="210" text-anchor="middle">Oct</text><text x="405" y="210" text-anchor="middle">Nov</text><text x="485" y="210" text-anchor="middle">Dec</text>
+                      </g>
+                      <g class="bars">
+                        <rect x="65" y="97" width="40" height="93" rx="4" /><rect x="145" y="85" width="40" height="105" rx="4" /><rect x="225" y="76" width="40" height="114" rx="4" /><rect x="305" y="67" width="40" height="123" rx="4" /><rect x="385" y="55" width="40" height="135" rx="4" /><rect class="over" x="465" y="43" width="40" height="147" rx="4" />
+                      </g>
+                      <line class="cap" x1="44" y1="55" x2="520" y2="55" />
+                      <text class="t-cap" x="50" y="48">capacity 900 h</text>
+                      <text class="t-warn" x="485" y="36" text-anchor="middle">980</text>
+                    </svg>
+                    <p class="reading">December is over capacity: new contracts starting then need hiring or a later start date.</p>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- Indicator panel -->
+            <article class="slide" data-date="Aug–Sep" data-label="Indicator panel">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Indicators</p>
+                  <h3>One panel for the whole operation, built on the Jira API</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>The data was all in Jira, but spread across projects and boards. Answering "are we keeping up?" or "who is overloaded?" meant opening a dozen filters.</dd>
+                    <dt>Approach</dt>
+                    <dd>A panel written in Google Apps Script on top of the Jira API that joins development and support: throughput, lead time, velocity per project, sprint capacity with a buffer, workload per person and hours against contracts.</dd>
+                    <dt>Outcome</dt>
+                    <dd>Blocked work, overloaded people and contracts close to their limit show up before someone has to ask, and management meetings start from the same numbers.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Dev and support in one view</li><li>Buffer before commitment</li><li>Show blocked, not just busy</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <div class="kpis">
+                    <div><b class="up">+9</b><span>Net throughput · 4 weeks</span><em>52 created · 61 resolved</em></div>
+                    <div><b>11 d</b><span>Median lead time</span><em>support tickets</em></div>
+                    <div><b>32 SP</b><span>Free capacity</span><em>after the 20% buffer</em></div>
+                    <div><b class="warn">3</b><span>Contracts ending</span><em>in the next 60 days</em></div>
+                  </div>
+                  <figure class="panel">
+                    <figcaption><b>Sprint capacity · all development projects</b><span class="muted">story points · illustrative</span></figcaption>
+                    <div class="cap-big"><b>~150 SP</b><span>recommended per sprint, keeping 20% free · real limit ~188 SP</span></div>
+                    <div class="capbar" role="img" aria-label="Capacity bar: 62 story points allocated across three projects, free space up to the 150 recommended, then a buffer zone up to 188.">
+                      <i class="cb-a" style="width:18%"></i><i class="cb-b" style="width:9%"></i><i class="cb-c" style="width:6%"></i><i class="cb-free" style="width:47%"></i><i class="cb-buf" style="width:20%"></i>
+                      <s style="left:80%"></s>
+                    </div>
+                    <div class="legend"><span><i class="sq cb-a"></i>Project A</span><span><i class="sq cb-b"></i>Project B</span><span><i class="sq cb-c"></i>Project C</span><span><i class="sq cb-free"></i>Free to allocate</span><span><i class="sq cb-buf"></i>Buffer</span></div>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Support throughput · created vs. resolved</b><span class="muted">tickets per week · illustrative</span></figcaption>
+                    <div id="throughput"></div>
+                    <div class="legend"><span><i class="ln ln-created"></i>Created</span><span><i class="ln ln-actual"></i>Resolved</span></div>
+                  </figure>
+                  <figure class="panel">
+                    <figcaption><b>Workload per person · dev + support</b><span class="muted">story points by state · illustrative</span></figcaption>
+                    <div id="workload" class="workload"></div>
+                    <div class="legend" id="workload-legend"></div>
+                    <p class="reading">Dev C looks busy but half of it is waiting on someone outside the team: the fix is a follow-up, not more people.</p>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- 6 · Risk -->
+            <article class="slide" data-date="Now" data-label="Risk &amp; continuity">
+              <div class="case">
+                <div class="case-text">
+                  <p class="case-tag">mosaicQ · Risk &amp; continuity</p>
+                  <h3>Contingency plans decided before they are needed</h3>
+                  <dl class="case-facts">
+                    <dt>Problem</dt>
+                    <dd>The indicators showed danger signs, but nobody had decided in advance what to do when they lit up, including the risk of losing a client.</dd>
+                    <dt>Approach</dt>
+                    <dd>Each risk gets probability × impact, an early-warning signal tied to a real indicator, prevention actions and a contingency plan with a trigger and an owner.</dd>
+                    <dt>Outcome</dt>
+                    <dd>A monthly client health score and plans ready for the first 48 hours, instead of improvising under pressure.</dd>
+                  </dl>
+                  <div class="ways">
+                    <p>How I worked</p>
+                    <ul><li>Decide before it's urgent</li><li>Every plan has an owner</li><li>Blameless post-mortems</li></ul>
+                  </div>
+                </div>
+                <div class="case-visual">
+                  <figure class="panel">
+                    <figcaption><b>Risk heat map</b><span class="muted">probability × impact · illustrative</span></figcaption>
+                    <div class="hm-wrap">
+                      <span class="hm-y">Impact</span>
+                      <div class="hm" role="img" aria-label="Five by five risk matrix; all six example risks sit in the high band.">
+                        <span class="hm-l">5</span><i class="m"></i><i class="h"><b>2</b><b>6</b></i><i class="c"></i><i class="c"></i><i class="c"></i>
+                        <span class="hm-l">4</span><i class="l"></i><i class="m"></i><i class="h"><b>1</b><b>4</b><b>5</b></i><i class="c"></i><i class="c"></i>
+                        <span class="hm-l">3</span><i class="l"></i><i class="m"></i><i class="m"></i><i class="h"><b>3</b></i><i class="c"></i>
+                        <span class="hm-l">2</span><i class="l"></i><i class="l"></i><i class="m"></i><i class="m"></i><i class="h"></i>
+                        <span class="hm-l">1</span><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i class="m"></i>
+                        <span></span><span class="hm-l">1</span><span class="hm-l">2</span><span class="hm-l">3</span><span class="hm-l">4</span><span class="hm-l">5</span>
+                      </div>
+                    </div>
+                    <p class="hm-x">Probability</p>
+                    <ol class="risk-list">
+                      <li>Client churn from low perceived value</li><li>Revenue concentrated in one client</li><li>Key-person dependency</li>
+                      <li>Contract overrun without amendment</li><li>Change deployed without notice</li><li>Security incident</li>
+                    </ol>
+                  </figure>
+                  <figure class="panel plan">
+                    <figcaption><b>Contingency plan · client churn</b><span class="muted">example</span></figcaption>
+                    <dl>
+                      <dt>Early warning</dt><dd>Slow pace with hours spent but no visible delivery; contract ends in 90 days or less.</dd>
+                      <dt>Trigger</dt><dd>Client signals dissatisfaction, or 60 days to the end without a renewal proposal.</dd>
+                      <dt>First 48 h</dt>
+                      <dd><ol><li>Align internally with leadership.</li><li>Pull six months of delivered value from the panel.</li><li>Meet the client sponsor to listen first.</li><li>Propose a reshaped package.</li></ol></dd>
+                      <dt>Owner</dt><dd>Leadership decides; governance brings the data and the plan.</dd>
+                    </dl>
+                  </figure>
+                </div>
+              </div>
+            </article>
+
+            <!-- 7 · Next -->
+            <article class="slide slide-next" data-date="Next" data-label="What's next">
+              <div class="next">
+                <p class="case-tag">What's next</p>
+                <h3>The next project on this timeline could be yours.</h3>
+                <p class="sub">I'm open to conversations about IT governance, PMO and operations roles.</p>
+                <div class="actions">
+                  <a class="btn btn-dark" href="#contact">Get in touch</a>
+                </div>
+              </div>
+            </article>
+
           </div>
-          <ul class="tags"><li>Sprint planning</li><li>Daily</li><li>Review</li><li>Retrospective</li><li>Backlog refinement</li><li>Velocity</li></ul>
-        </article>
+        </div>
       </div>
     </section>
 
-    <!-- ============ APPROACH ============ -->
+    <!-- ============ HOW I WORK ============ -->
     <section class="section" id="approach">
       <div class="wrap approach">
         <header class="section-head">
-          <p class="kicker kicker-dark">Approach</p>
+          <p class="kicker kicker-dark">How I like to work</p>
           <h2>Principles first, tools second</h2>
-          <p class="sub">The method is chosen by the problem, never the other way around.</p>
+          <p class="sub">I choose the method by the problem, never the other way around.</p>
         </header>
         <div class="principles">
           <div><b>Measure before changing</b><p>Opinions open the conversation; data closes it.</p></div>
@@ -294,69 +631,23 @@
           <div><dt>Data</dt><dd>Google Apps Script on the Jira API, Power BI, SQL, Python (Pandas, NumPy).</dd></div>
           <div><dt>Platforms</dt><dd>Jira Software, Jira Service Management, Confluence, Rovo, ServiceNow, Power Automate.</dd></div>
         </dl>
-      </div>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section section-tint" id="experience">
-      <div class="wrap exp">
-        <div>
-          <header class="section-head">
-            <p class="kicker kicker-dark">Experience</p>
-            <h2>Where I've applied it</h2>
-          </header>
-          <ol class="timeline">
-            <li>
-              <p class="when">May 2026 — present</p>
-              <h3>IT Operations &amp; Governance Analyst</h3>
-              <p class="where">mosaicQ · Remote</p>
-              <ul>
-                <li>Built IT operations and governance practices from the ground up in a fully remote environment.</li>
-                <li>Centralized client demands in Jira Software and Jira Service Management, with ticket standards and routing workflows per project.</li>
-                <li>Built Google Apps Script integrations on the Jira API for indicators, contract tracking and reporting.</li>
-                <li>Partnered with technical heads and leadership on business and product vision and delivery alignment.</li>
-                <li>Implemented Kanban and Scrum practices tailored to each project and facilitated team ceremonies.</li>
-              </ul>
-            </li>
-            <li>
-              <p class="when">Jun 2025 — Apr 2026</p>
-              <h3>Operations Apprentice, BI &amp; IT</h3>
-              <p class="where">Vesuvius Sensors &amp; Probes · Sorocaba, SP</p>
-              <ul>
-                <li>Primary interface with external vendors for the deployment of the MES (Manufacturing Execution System).</li>
-                <li>Automated manual routines with Power Automate, advanced Excel and VBA.</li>
-                <li>Monitored operational indicators with Power BI, SQL and Python.</li>
-              </ul>
-            </li>
-          </ol>
+        <div class="education">
+          <p><b>UNIFACENS</b> · Technologist degree in IT Management, 2024–2026</p>
+          <p><b>Etec</b> · Centro Paula Souza · Technical degree in Administration, 2021–2023</p>
         </div>
-        <aside class="side">
-          <div>
-            <h3 class="h-xs">Education</h3>
-            <p><b>FACENS</b> · Faculdade de Engenharia de Sorocaba<br />Technologist degree in IT Management, 2024–2026</p>
-            <p><b>Etec</b> · Centro Paula Souza<br />Technical degree in Administration, 2021–2023</p>
-          </div>
-          <div>
-            <h3 class="h-xs">Languages</h3>
-            <p>Portuguese, native<br />English, advanced</p>
-          </div>
-        </aside>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
     <section class="contact dark" id="contact">
-      <div class="wrap contact-grid">
-        <div class="photo"><span>LQ</span><img src="assets/photo.jpg" alt="Portrait of Lucas Campos Queiroz" onerror="this.remove()" /></div>
-        <div>
-          <h2>Let's make your operation readable.</h2>
-          <p class="lead">Open to conversations about IT governance, PMO and operations roles.</p>
-          <div class="actions">
-            <a class="btn btn-light" href="mailto:lucascamposqueiroz15@gmail.com">lucascamposqueiroz15@gmail.com</a>
-            <a class="btn btn-ghost" href="https://www.linkedin.com/in/lucas-campos-queiroz" rel="noopener">LinkedIn</a>
-          </div>
-          <p class="muted small">São Paulo, Brazil</p>
+      <div class="wrap">
+        <h2>Let's talk.</h2>
+        <p class="lead">Open to conversations about IT governance, PMO and operations roles.</p>
+        <div class="actions">
+          <a class="btn btn-light" href="mailto:lucascamposqueiroz15@gmail.com">lucascamposqueiroz15@gmail.com</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/lucas-campos-queiroz" rel="noopener">LinkedIn</a>
         </div>
+        <p class="muted small">São Paulo, Brazil</p>
       </div>
     </section>
   </main>
@@ -364,7 +655,7 @@
   <footer class="footer dark">
     <div class="wrap footer-in">
       <p>© 2026 Lucas Campos Queiroz</p>
-      <p>Figures in case studies are illustrative; company and client information is anonymized.</p>
+      <p>Figures in projects are illustrative; company and client information is anonymized.</p>
     </div>
   </footer>
 

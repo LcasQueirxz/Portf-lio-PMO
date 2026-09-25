@@ -22,6 +22,29 @@ const CONTRACTS = [
   { type: "Development", client: "Client E", used: 30, elapsed: 34, cap: "600 h" },
 ];
 
+const THROUGHPUT = [
+  // tickets per week, last 12 weeks
+  { w: "W1", created: 9, resolved: 4 }, { w: "W2", created: 14, resolved: 6 }, { w: "W3", created: 8, resolved: 17 },
+  { w: "W4", created: 10, resolved: 9 }, { w: "W5", created: 11, resolved: 7 }, { w: "W6", created: 12, resolved: 13 },
+  { w: "W7", created: 9, resolved: 15 }, { w: "W8", created: 13, resolved: 10 }, { w: "W9", created: 10, resolved: 9 },
+  { w: "W10", created: 16, resolved: 12 }, { w: "W11", created: 12, resolved: 14 }, { w: "W12", created: 8, resolved: 16 },
+];
+
+const STATES = [
+  { id: "work", name: "Working now" },
+  { id: "review", name: "Test / review" },
+  { id: "blocked", name: "Blocked outside the team" },
+  { id: "queue", name: "In the queue" },
+];
+const WORKLOAD = [
+  // story points per state
+  { name: "Dev A", work: 3, review: 15, blocked: 0, queue: 6 },
+  { name: "Dev B", work: 4, review: 5, blocked: 4, queue: 5 },
+  { name: "Dev C", work: 3, review: 2, blocked: 7, queue: 1 },
+  { name: "Dev D", work: 0, review: 6, blocked: 0, queue: 0 },
+  { name: "Dev E", work: 0, review: 0, blocked: 0, queue: 6 },
+];
+
 const PHASES = [
   { id: "imm", name: "Immersion" },
   { id: "con", name: "Concept" },
@@ -41,51 +64,6 @@ const PROJECTS = [
   { name: "Service D", status: ["info", "Continuous"], seg: [["sup", 0, 6]] },
   { name: "Product E", status: ["info", "Discovery"], seg: [["imm", 3.2, 3.8], ["con", 3.8, 4.6], ["map", 4.6, 5.3], ["ui", 5.3, 6]] },
 ];
-
-// ---------------------------------------------------------------- helpers
-const NS = "http://www.w3.org/2000/svg";
-const f1 = (n) => n.toFixed(1);
-function svg(w, h, label) {
-  const s = document.createElementNS(NS, "svg");
-  s.setAttribute("viewBox", `0 0 ${w} ${h}`);
-  s.setAttribute("role", "img");
-  if (label) s.setAttribute("aria-label", label);
-  return s;
-}
-function add(parent, tag, attrs, text) {
-  const e = document.createElementNS(NS, tag);
-  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
-  if (text != null) e.textContent = text;
-  parent.appendChild(e);
-  return e;
-}
-
-// ---------------------------------------------------------------- radar (hero)
-function radar(el) {
-  if (!el) return;
-  const W = 600, H = 480, cx = W / 2, cy = H / 2, R = 178, n = MATURITY.length;
-  const s = svg(W, H);
-  const ang = (i) => -Math.PI / 2 + (i * 2 * Math.PI) / n;
-  const pt = (i, v) => [cx + Math.cos(ang(i)) * R * (v / 5), cy + Math.sin(ang(i)) * R * (v / 5)];
-  const poly = (key) => MATURITY.map((d, i) => pt(i, d[key]).map(f1).join(",")).join(" ");
-  for (let l = 1; l <= 5; l++) add(s, "polygon", { class: "r-ring", points: MATURITY.map((_, i) => pt(i, l).map(f1).join(",")).join(" ") });
-  MATURITY.forEach((_, i) => { const [x, y] = pt(i, 5); add(s, "line", { class: "r-axis", x1: cx, y1: cy, x2: f1(x), y2: f1(y) }); });
-  add(s, "polygon", { class: "r-before", points: poly("before") });
-  add(s, "polygon", { class: "r-target", points: poly("target") });
-  add(s, "polygon", { class: "r-now", points: poly("now") });
-  MATURITY.forEach((d, i) => { const [x, y] = pt(i, d.now); add(s, "circle", { class: "r-dot", cx: f1(x), cy: f1(y), r: 3.5 }); });
-  MATURITY.forEach((d, i) => {
-    const c = Math.cos(ang(i)), sn = Math.sin(ang(i));
-    const x = cx + c * (R + 20), y = cy + sn * (R + 20);
-    const anchor = Math.abs(c) < 0.2 ? "middle" : c > 0 ? "start" : "end";
-    const words = d.name.split(" ");
-    const lines = d.name.length > 12 && words.length > 1 ? [words.slice(0, Math.ceil(words.length / 2)).join(" "), words.slice(Math.ceil(words.length / 2)).join(" ")] : [d.name];
-    const y0 = sn < -0.5 ? y - (lines.length - 1) * 15 : sn > 0.5 ? y + 8 : y - ((lines.length - 1) * 15) / 2 + 4;
-    const t = add(s, "text", { class: "r-label", x: f1(x), y: f1(y0), "text-anchor": anchor });
-    lines.forEach((ln, k) => add(t, "tspan", { x: f1(x), dy: k ? 15 : 0 }, ln));
-  });
-  el.appendChild(s);
-}
 
 // ---------------------------------------------------------------- dumbbell (maturity before → now)
 function dumbbell(el) {
@@ -149,10 +127,130 @@ function gantt(el, legendEl) {
   if (legendEl) legendEl.innerHTML = PHASES.map((ph) => `<span><i class="sq ph-${ph.id}"></i>${ph.name}</span>`).join("");
 }
 
-radar(document.getElementById("radar"));
+// ---------------------------------------------------------------- support throughput (created vs resolved)
+function throughput(el) {
+  if (!el) return;
+  const W = 540, H = 210, L = 32, R = 520, T = 12, B = 176, max = 20;
+  const x = (i) => L + (i * (R - L)) / (THROUGHPUT.length - 1);
+  const y = (v) => B - (v / max) * (B - T);
+  const pts = (k) => THROUGHPUT.map((d, i) => `${x(i).toFixed(1)},${y(d[k]).toFixed(1)}`).join(" ");
+  const grid = [0, 5, 10, 15, 20].map((v) => `<line x1="${L}" y1="${y(v)}" x2="${R}" y2="${y(v)}" /><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join("");
+  const labels = THROUGHPUT.map((d, i) => (i % 2 ? "" : `<text x="${x(i)}" y="${B + 20}" text-anchor="middle">${d.w}</text>`)).join("");
+  el.innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Line chart over 12 weeks: resolved tickets overtake created tickets in most of the recent weeks.">
+    <g class="grid">${[0, 5, 10, 15, 20].map((v) => `<line x1="${L}" y1="${y(v)}" x2="${R}" y2="${y(v)}" />`).join("")}</g>
+    <g class="axis">${[0, 5, 10, 15, 20].map((v) => `<text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join("")}${labels}</g>
+    <polygon class="s-area" points="${x(0)},${B} ${pts("resolved")} ${x(THROUGHPUT.length - 1)},${B}" />
+    <polyline class="s-created" points="${pts("created")}" />
+    <polyline class="s-actual" points="${pts("resolved")}" />
+  </svg>`;
+}
+
+// ---------------------------------------------------------------- workload per person (stacked by state)
+function workload(el, legendEl) {
+  if (!el) return;
+  const max = 30;
+  el.innerHTML = WORKLOAD.map((p) => {
+    const total = STATES.reduce((s, st) => s + p[st.id], 0);
+    return `<div class="wl-row">
+      <span class="wl-name">${p.name}</span>
+      <div class="wl-bar" aria-label="${p.name}: ${STATES.map((st) => `${p[st.id]} SP ${st.name.toLowerCase()}`).join(", ")}">
+        ${STATES.filter((st) => p[st.id]).map((st) => `<i class="wl-${st.id}" style="width:${(p[st.id] / max) * 100}%">${p[st.id]}</i>`).join("")}
+      </div>
+      <span class="wl-total">${total} SP</span>
+    </div>`;
+  }).join("");
+  if (legendEl) legendEl.innerHTML = STATES.map((st) => `<span><i class="sq wl-${st.id}"></i>${st.name}</span>`).join("");
+}
+
+// ---------------------------------------------------------------- projects timeline (drag, swipe, arrows, rail)
+// Each <article class="slide"> becomes one stop; its data-date / data-label feed the rail.
+function timeline() {
+  const track = document.getElementById("tl-track");
+  const rail = document.getElementById("tl-rail");
+  const prev = document.getElementById("tl-prev");
+  const next = document.getElementById("tl-next");
+  const count = document.getElementById("tl-count");
+  if (!track || !rail) return;
+  const slides = [...track.querySelectorAll(".slide")];
+  const n = slides.length;
+  const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  slides.forEach((s, i) => { s.setAttribute("role", "group"); s.setAttribute("aria-roledescription", "slide"); s.setAttribute("aria-label", `${i + 1} of ${n}`); });
+  rail.style.setProperty("--n", n);
+  rail.innerHTML = slides.map((s) => `<li><button type="button"><i></i><span class="tl-date">${s.dataset.date}</span><span class="tl-label">${s.dataset.label}</span></button></li>`).join("");
+  const stops = [...rail.querySelectorAll("button")];
+
+  let active = 0;
+  const go = (i, animate = smooth) => {
+    i = Math.max(0, Math.min(n - 1, i));
+    track.scrollTo({ left: slides[i].offsetLeft, behavior: animate ? "smooth" : "auto" });
+  };
+  const nearest = () => {
+    if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) return n - 1;
+    let best = 0;
+    slides.forEach((s, i) => { if (Math.abs(s.offsetLeft - track.scrollLeft) < Math.abs(slides[best].offsetLeft - track.scrollLeft)) best = i; });
+    return best;
+  };
+  const update = () => {
+    active = nearest();
+    stops.forEach((b, i) => { b.setAttribute("aria-current", i === active); b.classList.toggle("past", i < active); });
+    rail.style.setProperty("--p", n > 1 ? active / (n - 1) : 0);
+    if (count) count.textContent = `${active + 1} / ${n}`;
+    if (prev) prev.disabled = active === 0;
+    if (next) next.disabled = active === n - 1;
+    // track follows the active slide's height, so short slides don't leave a gap
+    track.style.height = `${slides[active].offsetHeight}px`;
+  };
+
+  stops.forEach((b, i) => b.addEventListener("click", () => go(i)));
+  prev?.addEventListener("click", () => go(active - 1));
+  next?.addEventListener("click", () => go(active + 1));
+  track.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }
+  });
+  let raf = 0;
+  track.addEventListener("scroll", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener("resize", () => { go(active, false); update(); });
+  document.fonts?.ready.then(update);
+  track.querySelectorAll("img").forEach((img) => { img.addEventListener("load", update); img.addEventListener("error", () => setTimeout(update)); });
+
+  // mouse drag (touch already swipes natively through scroll-snap)
+  let drag = null;
+  track.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    drag = { x: e.clientX, left: track.scrollLeft, start: active, moved: false };
+  });
+  window.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved) {
+      if (Math.abs(dx) < 6) return;
+      drag.moved = true;
+      track.classList.add("dragging");
+      window.getSelection()?.removeAllRanges();
+    }
+    track.scrollLeft = drag.left - dx;
+  });
+  window.addEventListener("pointerup", (e) => {
+    if (!drag) return;
+    const d = drag;
+    drag = null;
+    if (!d.moved) return;
+    track.classList.remove("dragging");
+    const dx = e.clientX - d.x;
+    go(Math.abs(dx) > 60 ? d.start + (dx < 0 ? 1 : -1) : d.start);
+  });
+
+  update();
+}
+
 dumbbell(document.getElementById("dumbbell"));
 contracts(document.getElementById("contracts"));
 gantt(document.getElementById("gantt"), document.getElementById("phase-legend"));
+throughput(document.getElementById("throughput"));
+workload(document.getElementById("workload"), document.getElementById("workload-legend"));
+timeline();
 
 // nav: solid background once the dark hero scrolls away
 const nav = document.getElementById("nav");
