@@ -168,13 +168,13 @@ const WF_NODES = [
   // id, label, lane, column, kind (wait | work | done | "")
   { id: "backlog", label: "Backlog", lane: 1, col: 0, kind: "wait" },
   { id: "todo", label: "To do", lane: 0, col: 1, kind: "" },
-  { id: "prog", label: "In progress", lane: 0, col: 2, kind: "work" },
-  { id: "wcr", label: "Waiting\ncode review", lane: 0, col: 3, kind: "wait" },
-  { id: "cr", label: "Code review", lane: 1, col: 4, kind: "work" },
-  { id: "wdr", label: "Waiting\ndesign review", lane: 2, col: 5, kind: "wait" },
-  { id: "dr", label: "Design review", lane: 2, col: 6, kind: "work" },
-  { id: "rqa", label: "Ready for QA", lane: 3, col: 7, kind: "wait" },
-  { id: "qat", label: "QA testing", lane: 3, col: 8, kind: "work" },
+  { id: "prog", label: "In\nprogress", lane: 0, col: 2, kind: "work" },
+  { id: "wcr", label: "Waiting\nreview", lane: 0, col: 3, kind: "wait" },
+  { id: "cr", label: "Code\nreview", lane: 1, col: 4, kind: "work" },
+  { id: "wdr", label: "Waiting\ndesign", lane: 2, col: 5, kind: "wait" },
+  { id: "dr", label: "Design\nreview", lane: 2, col: 6, kind: "work" },
+  { id: "rqa", label: "Ready\nfor QA", lane: 3, col: 7, kind: "wait" },
+  { id: "qat", label: "QA\ntesting", lane: 3, col: 8, kind: "work" },
   { id: "done", label: "Done", lane: 3, col: 9, kind: "done" },
 ];
 const WF_EDGES = [
@@ -185,7 +185,7 @@ const WF_REWORK = ["cr", "dr", "qat"]; // each can send the ticket back to In pr
 
 function workflow(el) {
   if (!el) return;
-  const L = 96, CW = 92, NW = 82, NH = 36, TOP = 34, LH = 74;
+  const L = 78, CW = 74, NW = 66, NH = 38, TOP = 34, LH = 70;
   const W = L + CW * 10, H = TOP + LH * LANES.length + 4;
   const nodes = Object.fromEntries(WF_NODES.map((n) => [n.id, { ...n, cx: L + CW * n.col + CW / 2, cy: TOP + LH * n.lane + LH / 2 }]));
   const arrow = 'marker-end="url(#wf-arrow)"';
@@ -207,7 +207,7 @@ function workflow(el) {
   // rework: up to a shared rail above the lanes, then back into In progress
   const back = nodes.prog, railY = 16;
   const rework = WF_REWORK.map((id) => {
-    const n = nodes[id], x = n.cx + 24;
+    const n = nodes[id], x = n.cx + 20;
     return `<path class="wf-back" d="M${x} ${n.cy - NH / 2} V${railY} H${back.cx + 18} V${back.cy - NH / 2 - 3}" ${arrow.replace("wf-arrow", "wf-arrow-back")} />`;
   }).join("");
 
@@ -229,6 +229,34 @@ function workflow(el) {
     ${rework}${edges}${boxes}
     <text class="wf-note" x="${n0.cx}" y="${n0.cy + NH / 2 + 13}" text-anchor="middle">↺ from any status</text>
   </svg>`;
+}
+
+// ---------------------------------------------------------------- one visual at a time inside each slide
+// Every direct child of .case-visual becomes a tab; data-tab overrides the name taken from its caption.
+function visualTabs() {
+  document.querySelectorAll(".case-visual").forEach((v, k) => {
+    const items = [...v.children];
+    if (items.length < 2) return;
+    const name = (c) => c.dataset.tab || (c.classList.contains("shot") ? "Photo" : (c.querySelector("figcaption b")?.textContent || "More").split(" · ")[0]);
+    const bar = document.createElement("div");
+    bar.className = "v-tabs";
+    bar.setAttribute("role", "tablist");
+    const show = (i) => items.forEach((c, j) => { c.hidden = j !== i; bar.children[j].setAttribute("aria-selected", j === i); bar.children[j].tabIndex = j === i ? 0 : -1; });
+    items.forEach((c, i) => {
+      c.id ||= `v${k}-${i}`;
+      c.setAttribute("role", "tabpanel");
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-controls", c.id);
+      b.textContent = name(c);
+      b.addEventListener("click", () => show(i));
+      bar.appendChild(b);
+    });
+    v.prepend(bar);
+    v.classList.add("tabbed");
+    show(0);
+  });
 }
 
 // ---------------------------------------------------------------- projects timeline (drag, swipe, arrows, rail)
@@ -277,6 +305,7 @@ function timeline() {
   track.addEventListener("click", (e) => {
     const b = e.target.closest("[data-go]");
     if (b) go(+b.dataset.go);
+    if (e.target.closest('[role="tab"]')) requestAnimationFrame(update); // mobile: height follows the open tab
   });
   const nearest = () => {
     if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) return n - 1;
@@ -344,6 +373,7 @@ gantt(document.getElementById("gantt"), document.getElementById("phase-legend"))
 throughput(document.getElementById("throughput"));
 workload(document.getElementById("workload"), document.getElementById("workload-legend"));
 workflow(document.getElementById("workflow"));
+visualTabs();
 timeline();
 
 // nav: solid background once the dark hero scrolls away

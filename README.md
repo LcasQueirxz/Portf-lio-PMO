@@ -1,6 +1,6 @@
 # Portfólio · Lucas Campos Queiroz
 
-Site estático: `index.html` + `styles.css` + `assets/`. Não tem build nem dependências.
+Site estático: `index.html` + `styles.css` + `script.js` + fotos na raiz. Não tem build nem dependências.
 
 ## Ver localmente
 
@@ -12,7 +12,7 @@ python3 -m http.server 8080
 
 ## Antes de publicar
 
-- [ ] Colocar a foto em `assets/photo.jpg` (quadrada, de 600×600 px para cima). Sem a foto, aparecem as iniciais "LQ".
+- [ ] Colocar a foto em `photo.jpg` (quadrada, de 600×600 px para cima). Sem a foto, aparecem as iniciais "LQ".
 - [ ] Preencher o caso **Scrum Master (FACENS)**. Hoje o bloco amarelo está marcado como rascunho.
 - [ ] Revisar os números dos casos. Tudo que é gráfico está como "illustrative".
 - [ ] Conferir que não há nome de cliente, colega ou valor de contrato.
