@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" />
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -334,10 +334,25 @@
                       <tbody>
                         <tr><th>Board</th><td data-h="Development">Sprint, closed with its own version</td><td data-h="Support">Continuous Kanban</td></tr>
                         <tr><th>Sizing</th><td data-h="Development">Story points and due date</td><td data-h="Support">SLA by priority</td></tr>
-                        <tr><th>Entry</th><td data-h="Development">Refined backlog</td><td data-h="Support">One triaged support channel</td></tr>
+                        <tr><th>Entry</th><td data-h="Development">Refined backlog</td><td data-h="Support">One triaged channel, including clients' ServiceNow</td></tr>
                         <tr><th>Types</th><td data-h="Development">Story, task, bug</td><td data-h="Support">Correction, support, internal</td></tr>
                       </tbody>
                     </table>
+                  </figure>
+                  <figure class="panel" data-tab="SLA &amp; ServiceNow">
+                    <figcaption><b>Support across two tools</b><span class="muted">client's ServiceNow ↔ our Jira</span></figcaption>
+                    <ol class="pipe pipe-4">
+                      <li>Client opens a ticket<small>in their ServiceNow · SLA starts</small></li>
+                      <li>I collect it into Jira<small>type, contract, priority</small></li>
+                      <li>Team works it<small>on the support Kanban</small></li>
+                      <li>I update ServiceNow<small>status, notes, resolution</small></li>
+                    </ol>
+                    <ul class="wf-notes">
+                      <li><b>SLA by priority:</b> first response and resolution targets, followed ticket by ticket.</li>
+                      <li><b>Waiting for client</b> pauses the clock, so we are measured only on time we control.</li>
+                      <li><b>Both sides stay in sync:</b> every status change in Jira is reflected in ServiceNow, so the client never has to ask where things stand.</li>
+                      <li><b>Breach risk shows early:</b> tickets close to their SLA are flagged before they miss it.</li>
+                    </ul>
                   </figure>
                   <figure class="panel">
                     <figcaption><b>Anatomy of a ticket</b><span class="muted">redrawn · no real data</span></figcaption>
