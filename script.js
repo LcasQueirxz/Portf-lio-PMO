@@ -65,22 +65,30 @@ const PROJECTS = [
   { name: "Product E", status: ["info", "Discovery"], seg: [["imm", 3.2, 3.8], ["con", 3.8, 4.6], ["map", 4.6, 5.3], ["ui", 5.3, 6]] },
 ];
 
-// ---------------------------------------------------------------- dumbbell (maturity before → now)
-function dumbbell(el) {
+// ---------------------------------------------------------------- radar (maturity May → today → target)
+function radar(el) {
   if (!el) return;
-  const rows = MATURITY.map((d) => `
-    <div class="db-row">
-      <span class="db-name">${d.name}</span>
-      <div class="db-track" aria-label="${d.name}: ${d.before} in May, ${d.now} today, target ${d.target}">
-        <i class="db-line" style="left:${(d.before / 5) * 100}%;width:${((d.now - d.before) / 5) * 100}%"></i>
-        <i class="db-target" style="left:${(d.target / 5) * 100}%" title="target ${d.target}"></i>
-        <i class="db-dot before" style="left:${(d.before / 5) * 100}%"></i>
-        <i class="db-dot now" style="left:${(d.now / 5) * 100}%"></i>
-      </div>
-      <span class="db-val">${d.before} → <b>${d.now}</b></span>
-    </div>`).join("");
-  el.innerHTML = `<div class="db-scale" aria-hidden="true"><span></span><div>${[0, 1, 2, 3, 4, 5].map((v) => `<span style="left:${v * 20}%">${v}</span>`).join("")}</div><span></span></div>${rows}
-    <p class="db-note">Vertical tick = target for the dimension.</p>`;
+  const W = 560, H = 410, cx = W / 2, cy = 202, R = 140, n = MATURITY.length;
+  const ang = (i) => -Math.PI / 2 + (i * 2 * Math.PI) / n;
+  const pt = (i, v) => [cx + Math.cos(ang(i)) * (R * v) / 5, cy + Math.sin(ang(i)) * (R * v) / 5];
+  const poly = (k) => MATURITY.map((d, i) => pt(i, d[k]).map((c) => c.toFixed(1)).join(",")).join(" ");
+  const rings = [1, 2, 3, 4, 5].map((v) => `<polygon class="r-ring" points="${MATURITY.map((_, i) => pt(i, v).join(",")).join(" ")}" /><text class="r-tick" x="${cx + 4}" y="${cy - (R * v) / 5 - 3}">${v}</text>`).join("");
+  const spokes = MATURITY.map((_, i) => { const [x, y] = pt(i, 5); return `<line class="r-spoke" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" />`; }).join("");
+  const labels = MATURITY.map((d, i) => {
+    const [x, y] = pt(i, 5.9);
+    const c = Math.cos(ang(i));
+    const anchor = Math.abs(c) < 0.2 ? "middle" : c > 0 ? "start" : "end";
+    const dy = Math.sin(ang(i)) < -0.9 ? -8 : Math.sin(ang(i)) > 0.9 ? 6 : 0;
+    return `<text class="r-label" x="${x}" y="${y + dy}" text-anchor="${anchor}">${d.name}<tspan class="r-val" x="${x}" dy="15">${d.before} → ${d.now}</tspan></text>`;
+  }).join("");
+  const dots = MATURITY.map((d, i) => { const [x, y] = pt(i, d.now); return `<circle class="r-dot" cx="${x}" cy="${y}" r="3.5" />`; }).join("");
+  el.innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Radar chart of maturity from 0 to 5 in eight dimensions. ${MATURITY.map((d) => `${d.name}: ${d.before} in May, ${d.now} today, target ${d.target}`).join("; ")}.">
+    ${rings}${spokes}
+    <polygon class="r-target" points="${poly("target")}" />
+    <polygon class="r-before" points="${poly("before")}" />
+    <polygon class="r-now" points="${poly("now")}" />
+    ${dots}${labels}
+  </svg>`;
 }
 
 // ---------------------------------------------------------------- contracts (bullet bars)
@@ -367,7 +375,7 @@ function timeline() {
   update();
 }
 
-dumbbell(document.getElementById("dumbbell"));
+radar(document.getElementById("radar"));
 contracts(document.getElementById("contracts"));
 gantt(document.getElementById("gantt"), document.getElementById("phase-legend"));
 throughput(document.getElementById("throughput"));
